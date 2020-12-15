@@ -42,10 +42,11 @@ export class MyThing extends React.Component<IProps, IState>{
   }
 
   componentDidMount(){
+    //do an api code to the node.js backend, just to test this out
     axios({ method: 'GET', url: 'http://localhost:4000' })
       .then((response: { data: any; }) => {
-        console.log("Runnign callback!");
-        this.setState({test : response.data});
+        console.log("Callback", response.data);
+        this.setState({test : response.data.thing});
       });
   }
 

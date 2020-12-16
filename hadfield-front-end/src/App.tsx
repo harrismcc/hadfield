@@ -1,7 +1,7 @@
-import React from 'react';
-import axios from 'axios'
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import axios from "axios"
+import logo from "./logo.svg";
+import "./App.css";
 
 function App() {
   return (
@@ -37,13 +37,13 @@ export class MyThing extends React.Component<IProps, IState>{
     super(props);
 
     this.state = {
-      test : 'no api call performed'
+      test : "no api call performed"
     }
   }
 
   componentDidMount(){
     //do an api code to the node.js backend, just to test this out
-    axios({ method: 'GET', url: 'http://localhost:4000' })
+    axios({ method: "GET", url: "http://localhost:4000" })
       .then((response: { data: any; }) => {
         console.log("Callback", response.data);
         this.setState({test : response.data.thing});

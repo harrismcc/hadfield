@@ -1,7 +1,42 @@
 import React from "react";
-import axios from "axios"
+import axios from "axios";
 import logo from "./logo.svg";
 import "./App.css";
+
+interface IProps {
+}
+interface IState {
+  test?: string;
+}
+
+export class MyThing extends React.Component<IProps, IState>{
+  constructor(props: IProps){
+    super(props);
+
+    this.state = {
+      test : "no api call performed"
+    };
+  }
+
+  componentDidMount(){
+    //do an api code to the node.js backend, just to test this out
+    axios({ method: "GET", url: "http://localhost:4000" })
+      .then((response: { data: any; }) => {
+        console.log("Callback", response.data);
+        this.setState({test : response.data.thing});
+      });
+  }
+
+  render() {
+    return(
+      <div>
+        {this.state.test}
+      </div>
+    );
+  }
+
+
+}
 
 function App() {
   return (
@@ -26,39 +61,6 @@ function App() {
 }
 
 
-interface IProps {
-}
-interface IState {
-  test?: string;
-}
 
-export class MyThing extends React.Component<IProps, IState>{
-  constructor(props: IProps){
-    super(props);
-
-    this.state = {
-      test : "no api call performed"
-    }
-  }
-
-  componentDidMount(){
-    //do an api code to the node.js backend, just to test this out
-    axios({ method: "GET", url: "http://localhost:4000" })
-      .then((response: { data: any; }) => {
-        console.log("Callback", response.data);
-        this.setState({test : response.data.thing});
-      });
-  }
-
-  render() {
-    return(
-      <div>
-        {this.state.test}
-      </div>
-    )
-  }
-
-
-}
 
 export default App;
